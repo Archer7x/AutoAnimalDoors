@@ -1,10 +1,10 @@
 ﻿{
-   "Name": "AutoAnimalDoors",
-   "Author": "Aaron Taggart",
-   "Version": "4.1.0",
-   "Description": "Open and close the doors automatically for your animals.",
-   "UniqueID": "AaronTaggart.AutoAnimalDoors",
-   "EntryDll": "AutoAnimalDoors.dll",
-   "MinimumApiVersion": "4.0.1",
-   "UpdateKeys": ["Nexus:1019"]
+  "Name": "AutoAnimalDoors-German",
+  "Author": "Archer7x",
+  "Version": "4.1.0",
+  "Description": "Öffnet und schließt die Stalltüren automatisch.",
+  "UniqueID": "Archer7x.AutoAnimalDoorsGerman",
+  "EntryDll": "AutoAnimalDoors.dll",
+  "MinimumApiVersion": "4.0.1",
+  "UpdateKeys": [ "Nexus:28658" ]
 }

@@ -29,9 +29,9 @@ namespace AutoAnimalDoors.Menu
         private readonly SortedList<int, String> animalBuildingLevelOptions = new()
         {
             { 1, "Normal" },
-            { 2, "Big" },
+            { 2, "Groß" },
             { 3, "Deluxe" },
-            { int.MaxValue, "Disabled" }
+            { int.MaxValue, "Deaktiviert" }
         };
 
         private string[] AnimalBuildingLevelNames
@@ -60,9 +60,9 @@ namespace AutoAnimalDoors.Menu
 
                 api.Register(manifest, () => config = new ModConfig(), () => Helper.WriteConfig<ModConfig>(config));
 
-                api.AddSectionTitle(manifest, () => "Auto Animal Doors");
+                api.AddSectionTitle(manifest, () => "Automatische Stalltüren");
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Auto Open Enabled",
+                    name: () => "Automatisches Öffnen Aktiviert",
                     getValue: () => config.AutoOpenEnabled,
                     setValue: (bool autoOpenEnabled) =>
                     {
@@ -73,10 +73,10 @@ namespace AutoAnimalDoors.Menu
                 api.AddNumberOption(mod: manifest,
                     name: () =>
                     {
-                        string alreadyOpened = ModEntry.HasDoorsOpenedToday ? "(Already Opened Today)" : "";
-                        return "Open Time " + alreadyOpened;
+                        string alreadyOpened = ModEntry.HasDoorsOpenedToday ? "(Heute bereits geöffnet)" : "";
+                        return "Öffnungszeit " + alreadyOpened;
                     },
-                    tooltip: () => "The time animal doors are scheduled to open.",
+                    tooltip: () => "Der Zeitpunkt, zu dem die Türen der Tiere geöffnet werden sollen.",
                     getValue: () => GetTimePickerValueFromTime(config.AnimalDoorOpenTime),
                     setValue: (int newTime) => config.AnimalDoorOpenTime = GetTimeFromTimePickerValue(newTime),
                     min: MIN_TIMEPICKER_VALUE,
@@ -87,10 +87,10 @@ namespace AutoAnimalDoors.Menu
                 api.AddNumberOption(mod: manifest,
                     name: () =>
                     {
-                        string alreadyClosed = ModEntry.HasDoorsClosedToday ? "(Already Closed Today)" : "";
-                        return "Close Time " + alreadyClosed;
+                        string alreadyClosed = ModEntry.HasDoorsClosedToday ? "(Heute bereits geschlossen)" : "";
+                        return "Schließzeit " + alreadyClosed;
                     },
-                    tooltip: () => "The time animal doors are scheduled to close.",
+                    tooltip: () => "Der Zeitpunkt, zu dem die Stalltüren geschlossen werden sollen.",
                     getValue: () => GetTimePickerValueFromTime(config.AnimalDoorCloseTime),
                     setValue: (int newTime) => config.AnimalDoorCloseTime = GetTimeFromTimePickerValue(newTime),
                     min: MIN_TIMEPICKER_VALUE,
@@ -98,53 +98,53 @@ namespace AutoAnimalDoors.Menu
                     formatValue: (value) => GetTimePickerStringFromTimePickerValue(value));
 
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Other Mods Enabled",
-                    tooltip: () => "Enables or disables the auto opening of animal doors from other mods (I can't control door sounds/animation or test every mod).",
+                    name: () => "Andere Mods Aktiviert",
+                    tooltip: () => "Aktiviert oder deaktiviert das automatische Öffnen von Stalltüren durch andere Mods (Ich kann nicht die Türgeräusche/Animation kontrollieren oder jeden Mod testen).",
                     getValue: () => config.UnrecognizedAnimalBuildingsEnabled,
                     setValue: (bool unrecognizedAnimalBulidingsEnabled) => config.UnrecognizedAnimalBuildingsEnabled = unrecognizedAnimalBulidingsEnabled);
 
                 api.AddTextOption(mod: manifest,
-                    name: () => "Coop Required Upgrade Level",
-                    tooltip: () => "The coop upgrade level required for auto open/close.",
+                    name: () => "Koop Erforderliche Ausbaustufe",
+                    tooltip: () => "Die für das automatische Öffnen/Schließen erforderliche Upgrade-Stufe des Stalles.",
                     getValue: () => GetAnimalBuildingUpgradeLevelName(config.CoopRequiredUpgradeLevel),
                     setValue: (string newLevel) => config.CoopRequiredUpgradeLevel = GetAnimalBuildingUpgradeLevel(newLevel),
                     allowedValues: AnimalBuildingLevelNames);
 
                 api.AddTextOption(mod: manifest,
-                    name: () => "Barn Required Upgrade Level",
+                    name: () => "Erforderliche Ausbaustufe der Scheune",
                     tooltip: () => "The barn upgrade level required for auto open/close.",
                     getValue: () => GetAnimalBuildingUpgradeLevelName(config.BarnRequiredUpgradeLevel),
                     setValue: (string newLevel) => config.BarnRequiredUpgradeLevel = GetAnimalBuildingUpgradeLevel(newLevel),
                     allowedValues: AnimalBuildingLevelNames);
 
                 api.AddTextOption(mod: manifest,
-                    name: () => "Door Sound Setting",
-                    tooltip: () => "When to play/not play the door sound when doors are opened and closed.",
+                    name: () => "Türgeräusch Einstellung",
+                    tooltip: () => "Wann das Türgeräusch beim Öffnen und Schließen von Türen abgespielt werden soll bzw. nicht abgespielt werden soll.",
                     getValue: () => config.DoorSoundSetting.Name(),
                     setValue: (string doorSoundSettingName) => config.DoorSoundSetting = DoorSoundSettingUtils.FromName(doorSoundSettingName),
                     allowedValues: DoorSoundSettingUtils.Names);
                 
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Show Popups",
-                    tooltip: () => "If enabled, shows a popup when all doors have been closed / opened.",
+                    name: () => "Meldung anzeigen",
+                    tooltip: () => "Wenn aktiviert, wird eine Meldung angezeigt, wenn alle Türen geschlossen/geöffnet wurden.",
                     getValue: () => config.DoorEventPopupEnabled,
                     setValue: (bool doorClosePopupEnabled) => config.DoorEventPopupEnabled = doorClosePopupEnabled);
 
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Close All At Once",
-                    tooltip: () => "If enabled all doors are closed at once when all animals are inside. Otherwise it closes when all animals of a single building are inside.",
+                    name: () => "Alle gleichzeitig schließen",
+                    tooltip: () => "Wenn diese Option aktiviert ist, werden alle Türen gleichzeitig geschlossen, sobald alle Tiere im Stall sind. Andernfalls werden sie geschlossen, wenn alle Tiere eines einzelnen Stalles drinnen sind.",
                     getValue: () => config.CloseAllBuildingsAtOnce,
                     setValue: (bool closeAllAtOnce) => config.CloseAllBuildingsAtOnce = closeAllAtOnce);
 
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Open Doors When Raining",
-                    tooltip: () => "Enables or disables opening doors when raining/lightning.",
+                    name: () => "Türen bei Regen öffnen",
+                    tooltip: () => "Aktiviert oder deaktiviert das Öffnen der Türen bei Regen/Blitz.",
                     getValue: () => config.OpenDoorsWhenRaining,
                     setValue: (bool autoOpenEnabled) => config.OpenDoorsWhenRaining = autoOpenEnabled);
 
                 api.AddBoolOption(mod: manifest,
-                    name: () => "Open Doors During Winter",
-                    tooltip: () => "Enables or disables opening doors during winter.",
+                    name: () => "Türen im Winter öffnen",
+                    tooltip: () => "Aktiviert oder deaktiviert das Öffnen von Türen im Winter.",
                     getValue: () => config.OpenDoorsDuringWinter,
                     setValue: (bool autoOpenEnabled) => config.OpenDoorsDuringWinter = autoOpenEnabled);
             }
