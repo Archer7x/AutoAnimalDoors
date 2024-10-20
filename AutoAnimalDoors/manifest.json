@@ -4,7 +4,7 @@
   "Version": "4.1.0",
   "Description": "Öffnet und schließt die Stalltüren automatisch.",
   "UniqueID": "Archer7x.AutoAnimalDoorsGerman",
-  "EntryDll": "AutoAnimalDoors.dll",
+  "EntryDll": "AutoAnimalDoors-German.dll",
   "MinimumApiVersion": "4.0.1",
   "UpdateKeys": [ "Nexus:28658" ]
 }

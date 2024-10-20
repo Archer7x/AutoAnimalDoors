@@ -9,9 +9,9 @@ namespace AutoAnimalDoors.Config
     {
         private static Dictionary<DoorSoundSetting, string> DOOR_SOUND_SETTING_TO_NAME = new Dictionary<DoorSoundSetting, string>()
         {
-            { DoorSoundSetting.ALWAYS_OFF, "Always Off" },
-            { DoorSoundSetting.ALWAYS_ON, "Always On" },
-            { DoorSoundSetting.ONLY_ON_FARM, "Only On Farm" }
+            { DoorSoundSetting.ALWAYS_OFF, "Immer aus" },
+            { DoorSoundSetting.ALWAYS_ON, "Immer an" },
+            { DoorSoundSetting.ONLY_ON_FARM, "Nur auf der Farm" }
         };
 
         private static Dictionary<string, DoorSoundSetting> NAME_TO_DOOR_SOUND_SETTING = DOOR_SOUND_SETTING_TO_NAME.ToDictionary(x => x.Value, x => x.Key);

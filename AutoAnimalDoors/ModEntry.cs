@@ -215,7 +215,7 @@ namespace AutoAnimalDoors
                 {
                     if (ModConfig.Instance.DoorEventPopupEnabled)
                     {
-                        Game1.chatBox.addInfoMessage("All animal doors have been closed!");
+                        Game1.chatBox.addInfoMessage("Alle Stalltüren wurden geschlossen!");
                     }
                     
                     ModEntry.HasDoorsClosedToday = true;
@@ -230,7 +230,7 @@ namespace AutoAnimalDoors
             {
                 if (ModConfig.Instance.DoorEventPopupEnabled)
                 {
-                    Game1.chatBox.addInfoMessage("All animal doors have been opened!");
+                    Game1.chatBox.addInfoMessage("Alle Stalltüren wurden geöffnet!");
                 }
                 
                 ModEntry.HasDoorsOpenedToday = true;
